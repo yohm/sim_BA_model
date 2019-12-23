@@ -23,7 +23,7 @@ def _random_subset(seq, m, rng):
 @py_random_state(3)
 def barabasi_albert_attractiveness(n, m, a, seed=None):
     if m < 1 or m >= n:
-        raise nx.NetworkXError("Barabási–Albert network must have m >= 1"
+        raise nx.NetworkXError("Barabasi-Albert network must have m >= 1"
                                " and m < n, m = %d, n = %d" % (m, n))
 
     G = nx.empty_graph(m)
