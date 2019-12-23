@@ -1,9 +1,5 @@
 import sys,json
 import networkx as nx
-import powerlaw
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
 
 def py_random_state(random_state_index):
     return nx.utils.py_random_state(random_state_index)
@@ -52,22 +48,9 @@ if len(sys.argv) != 5:
 
 g = barabasi_albert_attractiveness( int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4]))
 
-ks = [x[1] for x in g.degree()]
-results = powerlaw.Fit(ks, discrete=True)
-print(f'alpha: {results.power_law.alpha}, xmin: {results.power_law.xmin}')
+import analyze_pk
 
-figPDF = results.power_law.plot_pdf(label=r"fit($\alpha$: %.2f, $x_{min}$: %d)" % (results.alpha, results.xmin)) 
-figPDF.set_ylabel("P(k)")
-figPDF.set_xlabel("k")
-
-cdf = {z[0]:z[1] for z in zip(*powerlaw.cdf(ks))}
-cdf_xmin = cdf[results.xmin]
-
-bin_edges, prob = powerlaw.pdf(ks)
-x = [ (bin_edges[i]+bin_edges[i+1])/2.0 for i in range(0, len(bin_edges)-1) ]
-plt.plot(x, prob/(1.0-cdf_xmin), label="data")
-plt.legend()
-plt.savefig('pk.png')
-
+alpha, xmin = analyze_pk.analyze_pk(g, 'pk.png')
 with open('_output.json', 'w') as f:
-    json.dump({"alpha": results.power_law.alpha, "x_min": results.power_law.xmin}, f)
+    json.dump({"alpha": alpha, "x_min": xmin}, f)
+
