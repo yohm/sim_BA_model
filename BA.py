@@ -3,7 +3,7 @@ import networkx as nx
 
 if len(sys.argv) != 4:
     print(f"Usage: python {sys.argv[0]} <N> <m> <seed>", file=sys.stderr)
-    raise StandanrdError("invalid number of arguments")
+    raise Exception("invalid number of arguments")
 
 g = nx.barabasi_albert_graph(int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
 

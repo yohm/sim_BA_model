@@ -44,7 +44,7 @@ def barabasi_albert_attractiveness(n, m, a, seed=None):
 
 if len(sys.argv) != 5:
     print(f"Usage: python {sys.argv[0]} <N> <m> <A> <seed>", file=sys.stderr)
-    raise StandanrdError("invalid number of arguments")
+    raise Exception("invalid number of arguments")
 
 g = barabasi_albert_attractiveness( int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4]))
 
