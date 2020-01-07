@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 networkx = "*"
 powerlaw = "*"
+papermill = "*"
+jupyter = "*"
 
 [requires]
 python_version = "3.6"
