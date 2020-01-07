@@ -14,10 +14,10 @@ end
 sim_params_BA = {
   name: "BA_model",
   command: "#{repo_dir}/run_BA.sh",
-  support_input_json: false,
+  support_input_json: true,
   print_version_command: "cd #{repo_dir} && git describe --always",
   parameter_definitions: [
-    {key: "N", type: "Integer", default: 1000, description: "network size"},
+    {key: "N", type: "Integer", default: 10000, description: "network size"},
     {key: "m", type: "Integer", default: 4,    description: "number of links"}
   ],
   description: "Barabasi-Albert model",
@@ -29,10 +29,10 @@ create_sim( sim_params_BA )
 sim_params_BA_attractiveness = {
   name: "BA_attractiveness_model",
   command: "#{repo_dir}/run_BA_attractiveness.sh",
-  support_input_json: false,
+  support_input_json: true,
   print_version_command: "cd #{repo_dir} && git describe --always",
   parameter_definitions: [
-    {key: "N", type: "Integer", default: 1000, description: "network size"},
+    {key: "N", type: "Integer", default: 10000, description: "network size"},
     {key: "m", type: "Integer", default: 4,    description: "number of links"},
     {key: "A", type: "Integer", default: 0,    description: "initial attractiveness"}
   ],
